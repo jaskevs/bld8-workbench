@@ -1,0 +1,76 @@
+name: Workbench validation
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: workbench-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  NEXT_TELEMETRY_DISABLED: '1'
+  TURBO_TELEMETRY_DISABLED: '1'
+
+jobs:
+  validate:
+    name: Workbench checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: workbench-local-tests
+          POSTGRES_DB: workbench_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres -d workbench_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      WORKBENCH_TEST_DATABASE_URL: postgresql://postgres:workbench-local-tests@127.0.0.1:5432/workbench_test
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: pnpm
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Check source
+        run: pnpm lint
+      - name: Build production application
+        run: pnpm build
+      - name: Check workspace types
+        run: pnpm typecheck
+      - name: Check domain behaviour
+        run: pnpm test:unit
+      - name: Check PostgreSQL ownership and spending
+        run: pnpm test:services
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Check application interactions and accessibility
+        run: pnpm test:e2e
+      - name: Check authenticated conversation workflows
+        run: pnpm test:e2e:services
+      - name: Check Groq provider workflows
+        run: pnpm test:e2e:groq
+      - name: Save failure reports
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: workbench-test-results
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7

@@ -1,0 +1,86 @@
+/* Application-owned overrides. Keep the installed BLD8 UI tokens unchanged. */
+html[data-workbench-theme="cobalt"] {
+  color-scheme: light;
+  --bui-canvas: #f3f4f7;
+  --bui-bg: #ffffff;
+  --bui-surface: #f7f8fb;
+  --bui-raised: #e6eaf2;
+  --bui-ink: #202636;
+  --bui-muted: #606b7e;
+  --bui-line: #dfe4ed;
+  --bui-border-hover: #97a5bd;
+
+  --bui-primary: #3658e8;
+  --bui-primary-hover: #2946c7;
+  --bui-primary-ink: #ffffff;
+  --bui-accent: #c9d9ff;
+  --bui-accent-hover: #b7ccff;
+  --bui-accent-ink: #243d83;
+  --bui-accent-border: #6c87c8;
+  --bui-focus: #3658e8;
+  --bui-soft: #eaf0ff;
+
+  --bui-radius: 6px;
+  --bui-overlay-radius: 10px;
+  --bui-panel-radius: 10px;
+  --bui-shadow-field: inset 0 1px 2px #182c550a, inset 0 -1px 1px #ffffffcc;
+  --bui-shadow-control: inset 0 1px 1px #ffffff26, inset 0 -1px 1px #182c550a, 0 1px 2px #182c550d, 0 3px 5px #182c5506;
+  --bui-shadow-surface: inset 0 1px 0 #ffffff99, 0 1px 2px #182c5508, 0 4px 14px #182c5508;
+  --bui-shadow-hover: inset 0 1px 1px #ffffff33, inset 0 -1px 1px #182c550a, 0 2px 4px #182c5512, 0 5px 12px #182c550d;
+  --bui-shadow: inset 0 1px 0 #ffffff14, 0 4px 10px #182c550d, 0 20px 48px #182c551c;
+  --bui-switch-track: #cfd7e5;
+  --bui-switch-thumb: #ffffff;
+  --bui-thumb: #ffffff;
+  --bui-choice-border: #7485a4;
+  --bui-choice-on: var(--bui-accent);
+  --bui-choice-on-ink: var(--bui-accent-ink);
+  --bui-choice-on-border: var(--bui-accent-border);
+  --bui-shadow-switch: inset 0 1px 3px #182c5529, inset 0 -1px 1px #ffffff80;
+  --bui-shadow-switch-active: inset 0 2px 4px #27489c4d, inset 0 -1px 1px #ffffff33, 0 1px 2px #182c550a, 0 2px 5px #0000;
+  --bui-shadow-switch-thumb: 0 2px 3px #182c5529, inset 0 1px 1px #ffffffcc, inset 0 -1px 2px #182c5526;
+  --bui-shadow-switch-thumb-hover: 0 3px 6px #182c5533, inset 0 1px 1px #ffffffcc, inset 0 -1px 2px #182c5526;
+  --bui-shadow-switch-thumb-pressed: 0 1px 2px #182c5526, inset 0 1px 1px #ffffff99, inset 0 -1px 2px #182c5533;
+  --bui-shadow-track: inset 0 1px 2px #182c5526, inset 0 -1px 1px #ffffff66;
+  --bui-shadow-track-active: inset 0 1px 3px #182c5533, inset 0 -1px 1px #ffffff66;
+
+  --wb-rule: var(--bui-line);
+  --wb-heading-muted: #76669b;
+  --wb-body-ink: #424e65;
+  --wb-card-rest: #e7edff;
+  --wb-status-muted: #77839a;
+  --wb-nav-active: var(--bui-soft);
+  --wb-nav-ink: #2946c7;
+  --wb-brand-fill: #3658e8;
+  --wb-brand-ink: #ffffff;
+  --wb-code-bg: #f5f7fc;
+  --wb-code-ink: #2b3c65;
+  --wb-peach: #fff0e6;
+  --wb-peach-ink: #9a4f32;
+  --wb-peach-detail: #d9815e;
+  --wb-lilac: #eee9fc;
+  --wb-lilac-wash: #faf8ff;
+  --wb-lilac-ink: #65469b;
+  --wb-brand-detail: #ffbe98;
+  --wb-brand-gradient: linear-gradient(145deg,#3658e8,#624dd2);
+}
+
+@media (forced-colors: active) {
+  html[data-workbench-theme="cobalt"] {
+    --bui-focus: Highlight;
+    --wb-brand-fill: Canvas;
+    --wb-brand-ink: CanvasText;
+    --wb-nav-active: Highlight;
+    --wb-nav-ink: HighlightText;
+    --wb-heading-muted: CanvasText;
+    --wb-code-bg: Canvas;
+    --wb-code-ink: CanvasText;
+    --wb-peach: Canvas;
+    --wb-peach-ink: CanvasText;
+    --wb-peach-detail: CanvasText;
+    --wb-lilac: Canvas;
+    --wb-lilac-wash: Canvas;
+    --wb-lilac-ink: CanvasText;
+    --wb-brand-detail: CanvasText;
+    --wb-brand-gradient: none;
+  }
+}

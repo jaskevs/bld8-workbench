@@ -1,0 +1,31 @@
+{
+  "name": "bld8-workbench",
+  "private": true,
+  "version": "0.1.0",
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": "22.x",
+    "pnpm": "11.x"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "test:unit": "tsx --test tests/domain.test.ts",
+    "test:e2e": "playwright test",
+    "test": "pnpm test:unit && pnpm test:services && pnpm test:e2e && pnpm test:e2e:services && pnpm test:e2e:groq",
+    "db:migrate": "pnpm --filter @bld8/workbench-web db:migrate",
+    "test:services": "tsx --test --test-concurrency=1 tests/services.test.ts",
+    "test:e2e:services": "playwright test --config=playwright.services.config.ts",
+    "test:e2e:groq": "playwright test --config=playwright.groq.config.ts"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.64.1",
+    "tsx": "4.23.15",
+    "turbo": "2.11.9",
+    "typescript": "~5.9.3"
+  }
+}

@@ -1,0 +1,14 @@
+name: bld8-workbench-tests
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: workbench-local-tests
+      POSTGRES_DB: workbench_test
+    ports: ['127.0.0.1:3145:5432']
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d workbench_test']
+      interval: 2s
+      timeout: 5s
+      retries: 15

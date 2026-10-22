@@ -1,19 +1,47 @@
-# Tool permission model
+# 003 - Tool permission model
 
-Status: Draft — resolve before relevant implementation.
+Status: Accepted policy for implementation, 19 October 2026.
 
-## Roadmap direction
+## Context
 
-READ_ONLY / EXTERNAL_SIDE_EFFECT / SENSITIVE / PROHIBITED; v1 executes approved read-only tools only.
+A model's suggestion is not permission to execute a tool. Policy must be
+enforced by application code after authentication and schema validation.
 
-## Decisions to resolve
+## Decision
 
-Application-enforced policy, schema validation, allowed capabilities, denial behaviour, tests and approval UX before any side-effect tool is enabled.
+Classify each registered capability on the server:
 
-## Alternatives and tradeoffs
+| Class | v1 policy |
+|---|---|
+| READ_ONLY | May run only when explicitly registered, input validated and its data scope allowed for the authenticated user. |
+| EXTERNAL_SIDE_EFFECT | Denied until a separate approval interface and enforcement path are implemented. |
+| SENSITIVE | Denied; classification alone is never permission. |
+| PROHIBITED | Always denied. |
 
-Pending implementation research.
+Unregistered capabilities and malformed input are denied. The model cannot
+choose a capability class, supply its own approval or override user scope.
+Approval for a later side-effect tool must bind the authenticated user, exact
+action/input and expiry; neither sample UI nor an arbitrary client flag counts.
 
-## Decision and consequences
+Stage A has no executable tools. The first tool increment adds the named,
+read-only corpus capability after retrieval is verified. Do not expose generic
+HTTP, filesystem, shell, credential access or unrestricted URL fetching.
 
-Not yet recorded. Add the actual decision and validation evidence when made.
+Record permitted/denied outcomes and safe error codes in owned execution
+traces. Redact inputs and provider errors before persistence. Do not store
+headers, credentials or hidden reasoning. Tool execution must observe request,
+time and spending limits, and must not create an unbounded model/tool loop.
+
+## Alternatives and consequences
+
+Prompt-only restrictions cannot enforce application policy. A single allow-all
+tool interface makes the permission boundary ambiguous. Explicit registration
+and default denial require more deliberate integration but keep each enabled
+capability reviewable and testable.
+
+## Validation
+
+The foundation exposes no tool-execution endpoint. Before a real tool is enabled,
+tests must cover unknown tools, invalid input, unauthenticated/wrong-owner access,
+each denied class and the explicitly allowed read-only path. This accepted
+decision is not a claim that those future tools or tests are implemented.
