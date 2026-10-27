@@ -1,0 +1,13 @@
+# Upload source only; secrets are configured on the Vercel project.
+**/.env
+**/.env.*
+.git/
+.local/
+.turbo/
+.vercel/
+**/node_modules/
+**/.next/
+**/*.tsbuildinfo
+playwright-report/
+test-results/
+coverage/

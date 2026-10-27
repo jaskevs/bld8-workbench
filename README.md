@@ -23,7 +23,12 @@ the workflow working and showed the completed saved-result view; see
 US$1/user and US$5/app UTC-day guards remain, using published provider list-rate
 estimates. Free-plan charges can differ within its quota. The first slice saves
 one question and response per conversation; retrieval and tools come later.
-No Workbench application deployment is configured.
+The private application is deployed at https://bld8-workbench.vercel.app, with
+Groq execution enabled for the owner account. Git is connected and its required
+GitHub check passed before production promotion. On 27 October the user completed
+hosted sign-in, a request, reopening and reload; a new owned Groq result and its
+accounting are independently verified. That response reached the configured token
+ceiling. See the [private release status](docs/deployment.md).
 
 ## Intended use
 
@@ -84,21 +89,23 @@ tests/                       Domain and production-browser checks
 ## Stage A acceptance still open
 
 - Verify real ownership isolation with a second explicitly allowlisted
-  account. Personal GitHub sign-in, a Groq response and its saved Neon result
-  passed on 22 October; manual reload/reopen review remains distinct from the
-  independently checked database record and supplied saved-result screenshot.
+  account. The user deferred this for the initial jaskevs-only private release.
+  Real production sign-in, response, reopening and reload are reported successful
+  on 27 October; fresh saved-result ownership/usage/accounting are checked separately.
 - Extend live-provider acceptance to rate limits, timeouts and price assumptions.
   Actual Groq model identity and token metadata are verified for one response.
   Existing local SQL/route tests cover ownership, concurrency,
   idempotency, unknown usage, redaction and both approved daily caps.
-- Review the private workflow with real tasks and verify an independent
-  deployment. No Workbench application hosting or Git deployment is configured.
+- Review the private workflow with the proposed real tasks, including response
+  truncation at the configured output ceiling. Git-backed hosting, the release
+  gate and the first real hosted owner workflow are verified.
   Stage A has no Python, RAG, agents, vector storage or Azure service.
 
 Read [architecture](docs/architecture.md), [decisions](docs/adr/README.md),
 [development notes](docs/development.md), [application theming](docs/theming.md)
 and [verification](docs/verification.md).
-The CI workflow is prepared locally; it has not run on GitHub in this slice.
+The released source passed [Workbench validation on GitHub](https://github.com/jaskevs/bld8-workbench/actions/runs/39735518757).
+The private deployment and first hosted owner flow are verified; see the [release runbook](docs/deployment.md).
 
 **Licensing:** application licence selection remains open; the application and
 workspace packages are private/unpublished. Installed BLD8 UI source retains its

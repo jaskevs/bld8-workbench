@@ -20,7 +20,10 @@ source files or the parent workspace `.env`. The complete variable template is
    Homepage: `http://127.0.0.1:3135`. Callback:
    `http://127.0.0.1:3135/api/auth/callback/github`.
    Put its client ID and secret in `AUTH_GITHUB_ID` and `AUTH_GITHUB_SECRET`.
-   Use the same hostname in the browser. Keep production OAuth separate.
+   Use the same hostname in the browser. For production, the user's latest
+   choice is to reuse this personal OAuth app with an additional HTTPS callback;
+   keep the local callback and use separate AUTH_SECRET values. Read
+   [the deployment runbook](deployment.md) for that approved exception.
 2. Create a separate **bld8-workbench** Neon database. In a Vercel-managed Neon
    organisation, use your personal Vercel team: Storage -> Create Database ->
    Neon. Select the Free plan if offered and skip **Connect a Project** while
@@ -167,4 +170,6 @@ Build before `pnpm test:e2e`. Authenticated browser checks use genuine encrypted
 Auth.js test sessions against the disposable test database, not a production
 authentication bypass. No local test establishes real GitHub OAuth, Neon cloud
 connectivity, API account access or a completed live model request. Record those
-checks separately after configuration. No deployment is configured in this slice.
+checks separately after configuration. The protected Git-backed deployment and
+promotion check are now verified; current activation and real-browser acceptance
+status is recorded in [the deployment runbook](deployment.md).

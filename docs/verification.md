@@ -403,3 +403,233 @@ The refreshed production preview runs on 127.0.0.1:3135 and health still reports
 private-live configuration. Theme and Claude instructions reflect the new
 secondary palette. No commit, push, deployment or global account/tooling change
 was performed. This styling update does not close Stage A acceptance work.
+
+
+## Private release preparation - 27 October 2026
+
+The user authorised the first private deployment and restricted access to
+jaskevs. The real second-account OAuth/isolation check remains deferred and open;
+fixture ownership tests do not replace it. Stage A is not marked complete.
+
+The released f4677012630a6036e804be803328a1e6df30cbb8 source still has a successful
+Workbench validation run on GitHub. A new read-only API lookup confirms that
+exact hash and successful conclusion. No application behaviour changed, so the
+previous passing build, lint, types and 58-case suite were not repeated.
+
+Prepared .vercelignore, a credential-free production template and a deployment
+runbook. The ignored .local/production.env draft contains a fresh session secret,
+the existing Workbench-specific Neon connection and selected Groq key. The
+production owner allowlist contains only 26425317; live execution stays false.
+Local OAuth settings are preserved. No OpenAI key is copied into the draft.
+
+Production draft verification passes: distinct session secret, selected model,
+approved daily caps, no fallback key and disabled requests. AUTH_URL and the
+separate Production OAuth app credentials are deliberately pending. Git ignores
+both real environment files. Configured local and draft server secrets are
+absent from the existing compiled client JavaScript.
+
+A read-only Neon transaction verifies schema version 1, two existing runs,
+one completed run and zero running requests. No model call, migration, record
+reset or content query was made. Local real usage and the initial private
+deployment will share those records and the spending ledger.
+
+The stored isolated personal Vercel credential returns HTTP 403. A fresh login
+was started using only ../.bld8-local/vercel and needs the user's personal browser
+approval. The cause of the rejected credential is not established. Project
+discovery, all-URL protection, Git linking, required promotion checks, production
+OAuth and actual deployment are not yet verified. No cloud project setting,
+commit, push or deployment changed during this preparation.
+
+
+## First protected Vercel build - 27 October 2026
+
+The personal Vercel account/team is verified and the independent bld8-workbench
+project now exists (prj_bnDEPbHmbHGURn6g6L7XRB82CbHQ). Its protected build is READY
+as dpl_HjB8oe63a5HTcye8bZYvd85fvDet, from the unchanged runtime source at
+f4677012630a6036e804be803328a1e6df30cbb8. The private build address is
+https://bld8-workbench-jaskevs-4920s-projects.vercel.app.
+
+Anonymous requests to Conversations, its API and health on both the generated
+deployment URL and that project alias redirect to Vercel sign-in. All Deployments
+protection was enabled before uploading. Live model execution remains false and
+production OAuth is not configured. This is a hosted private shell, not a verified
+production request workflow. The intended stable origin
+https://bld8-workbench.vercel.app currently returns 404 because it has not been
+promoted; it is the registered project domain for the pending Production OAuth app.
+
+The required GitHub check is configured: Workbench checks, source git-provider /
+github, external check name Workbench checks, Production only, blocks deployment
+aliasing, timeout 1,800 seconds. Vercel's Git connection is still missing: the
+personal Vercel GitHub app needs access to jaskevs/bld8-workbench. Automatic
+production domain assignment stays false until linkage and the gate are verified.
+No automatic deployment/promotion claim is made from this configuration alone.
+
+The user has been asked to create the separate BLD8 Workbench Production OAuth
+app with homepage https://bld8-workbench.vercel.app and callback
+https://bld8-workbench.vercel.app/api/auth/callback/github, then save its Client ID
+and secret in the ignored .local/production.env draft. The Local OAuth app and
+apps/web/.env.local remain unchanged. Only jaskevs is allowlisted. Second-account
+isolation remains explicitly deferred, not passed; Stage A acceptance stays open.
+
+The earlier HTTP 403 is resolved after the isolated CLI refreshed its credential;
+API access verifies the personal account and Hobby team. Company/global settings
+were not changed. The first remote build failed with NEXT_NO_VERSION before
+compilation. Correcting the workspace commands and explicitly pinning pnpm 11.25.0
+produced READY, with Next.js build/type validation passing remotely.
+
+The upload included 72 explicitly allowed runtime/workspace files, preserving
+installed licences. Every uploaded file matched the released Git revision after
+line-ending normalisation and passed an exact configured-secret check. Real
+environment files, local tooling, caches, test output and planning were excluded.
+Production secrets are configured only in the Production environment, never
+Preview/Development; no OpenAI key is uploaded. The selected Groq model, owner
+allowlist and approved daily caps remain unchanged, with execution disabled.
+
+Nine anonymous route checks were made: the six checks on the two hosted URLs
+redirect to Vercel sign-in; the three checks on the unpromoted stable domain are
+404. No protection bypass/share link, application auth bypass, signed-in browser
+session, model call, database mutation, commit or push was used. A real hosted
+OAuth exchange and saved-request reload still need the user's browser. Earlier
+local/CI test evidence remains distinct from this protected cloud build.
+
+
+## Git deployment gate and shared OAuth choice - 27 October 2026
+
+The personal Vercel project is bld8-workbench
+(prj_bnDEPbHmbHGURn6g6L7XRB82CbHQ), on the jaskevs-4920s-projects Hobby team.
+The stable HTTPS origin is https://bld8-workbench.vercel.app. All Deployments
+protection was enabled before any upload. Anonymous requests to Conversations,
+its API and health on the stable and generated URLs redirect to Vercel sign-in.
+
+Git is connected to jaskevs/bld8-workbench, with main as Production Branch.
+Git-sourced deployment dpl_HgYCSX6DoCKPwChz3NpApaL7wSGX is READY from tested source
+f4677012630a6036e804be803328a1e6df30cbb8. Its Vercel check run for **Workbench
+checks** completed with **succeeded** before the stable domain was assigned.
+The gate uses GitHub's Workbench checks job, blocks production aliasing and has
+a 1,800-second timeout. Automatic production domain assignment is now enabled.
+Future main pushes are configured to build and pass that check before promotion.
+This was a deployment from the existing Git revision; no new push was made.
+
+On 27 October the user explicitly chose to reuse the existing personal Workbench
+OAuth app. This supersedes the earlier separate-Production-app plan. Keep both
+http://127.0.0.1:3135/api/auth/callback/github and
+https://bld8-workbench.vercel.app/api/auth/callback/github registered. Local and
+production AUTH_SECRET values remain different; local environment values and
+company/global account settings are unchanged. The production draft is ignored
+at .local/production.env and never auto-loaded by local Next.js commands.
+
+Preflight verifies the approved shared app's credentials through a deliberately
+invalid fixture-token check, selected Groq catalogue access, current pricing,
+the exact successful source check, Neon schema version 1 and zero active requests.
+It creates no user token, database write or model request. The user has been
+asked to save both callbacks. Live execution remains disabled pending that
+confirmation and the final Production-only environment/deployment update.
+
+Access stays restricted to jaskevs (26425317). Keep the real second-account
+isolation check deferred, not passed, and Stage A acceptance open. A real hosted
+OAuth exchange, small Groq request and saved-result reload still need review.
+
+The model catalogue returned HTTP 200 and lists GPT-OSS 120B. The OAuth fixture
+check returned the expected token-not-found result for valid app credentials; it
+does not create/reset/revoke a real token or establish a real OAuth exchange.
+The final credential file is ignored. No application source changed, so existing
+58-case local/CI evidence remains applicable without repeating the full suites.
+
+
+## Private live configuration published - 27 October 2026
+
+Workbench is deployed at **https://bld8-workbench.vercel.app** on the personal
+jaskevs-4920s-projects Hobby team, project prj_bnDEPbHmbHGURn6g6L7XRB82CbHQ.
+The live-configured release is dpl_9xTa8AEv5FahYaTaQcDH8oJ1NfLd, built from
+f4677012630a6036e804be803328a1e6df30cbb8. Next.js compilation and TypeScript passed.
+Its required **Workbench checks** GitHub check completed with **succeeded** before
+production aliases were assigned. Git is connected to jaskevs/bld8-workbench/main;
+future main pushes are configured to build and pass that gate before promotion.
+The current release deployed an existing Git revision; no new commit/push was made.
+
+All Deployments protection remains enabled. Anonymous Conversations, conversation
+API and health requests on the stable and generated URLs redirect to Vercel
+sign-in. Application access is separately restricted to jaskevs, ID 26425317.
+Production-only variables enable Groq / openai/gpt-oss-120b, the US$1/user and
+US$5/app UTC-day list-rate guards, and live requests. Server secrets use Vercel's
+sensitive type; Preview/Development have no live credentials, and no OpenAI key
+is configured there. There is no automatic provider fallback.
+
+The user explicitly chose the existing personal OAuth app and confirmed both
+local and production callbacks saved on 27 October. This supersedes the separate
+Production-app plan. Keep http://127.0.0.1:3135/api/auth/callback/github and
+https://bld8-workbench.vercel.app/api/auth/callback/github registered. Each origin
+has its own AUTH_SECRET. The local environment and company/global settings remain
+unchanged. Use the stable HTTPS origin for production sign-in; alternate generated
+URLs are build references and may not share OAuth state cookies.
+
+Credential/model/schema/source preflight and the final Vercel settings audit pass.
+The OAuth check uses a deliberately invalid fixture token and does not establish
+a real browser exchange. Groq's model catalogue returned 200 with the selected
+model; that check generated no tokens. The user has been asked to sign in at the
+production New request page, send one small question, reopen it and reload.
+The real hosted sign-in/request/reload result remains pending. Do not substitute
+the earlier local Groq record for that new production test.
+
+The initial private release stays jaskevs only. Real second-account isolation,
+manual assistive-technology review and the shell review/checkpoint remain open;
+Stage A is not marked complete. The fixed dates and 135-hour baseline are unchanged.
+
+The final Production environment audit confirms sensitive server-secret storage,
+only the approved numeric owner, the selected provider/model and daily caps. Six
+anonymous route checks on the stable/generated hosts redirect to Vercel sign-in.
+The Git-backed release check ckr_38f32ecc-361e-40c3-8d00-d0bd23fb6101 completed as
+succeeded. No force promotion, application auth bypass or public share link was
+used. A read-only metadata check at 06:10 UTC found zero requests created after
+this live release; its browser test was still pending at that check. All 58
+previous local/CI cases remain applicable because runtime source is unchanged.
+No new model request was made by release tooling and no database data was changed.
+
+
+## First real hosted request - 27 October 2026
+
+Credential/model/schema/source preflight and the final Vercel settings audit pass.
+The user completed real production sign-in, sent a question, reopened its saved
+conversation and reloaded it on 27 October. This is the user's browser report;
+the personal Brave session was not controlled or independently observed here.
+A separate read-only Neon check finds one new completed Groq run created after
+this live deployment, with a saved answer/provider ID and matching ownership.
+Requested/reported model both match openai/gpt-oss-120b. Usage is 133 input and
+1,024 output tokens, duration 2,826 ms, list-rate estimate US$0.000635 with matching
+accounting. Both daily guards remain within their approved limits.
+
+The provider finish reason is length: this bounded test reached the 1,024-token
+ceiling. The response may be incomplete; the application has a corresponding
+length warning. Keep that observation in the next response-quality review rather
+than silently increasing the cap or generating another test answer. This new
+record is distinct from the earlier local response. No private question, answer,
+conversation ID, provider ID or credentials were copied into these notes.
+
+The live-configured deployment is dpl_9xTa8AEv5FahYaTaQcDH8oJ1NfLd from
+f4677012630a6036e804be803328a1e6df30cbb8. It passed its required GitHub check
+before receiving the stable production aliases. All-URL Vercel protection and
+the jaskevs-only application allowlist remain. The user explicitly approved the
+shared personal OAuth app; local and production keep different session secrets.
+Local configuration, company/global settings and the approved spending limits
+are preserved. Release tooling made no additional generation request.
+
+The query filters runs after this production release rather than reusing the
+22 October local response. It reads metadata in a read-only transaction and
+does not alter model data or accounting. Pending source candidates pass the
+configured-secret scan, and both real environment files remain ignored.
+No runtime source changed, no extra full test run was needed, and no commit or
+push was made. Real second-account isolation stays deferred by user choice;
+manual accessibility and the shell review/checkpoint remain open. Stage A is
+not marked complete from one successful owner flow.
+
+
+## Deployment documentation source publication - 27 October 2026
+
+The source change publishes the private deployment runbook, upload exclusions,
+credential-free production template and verified production evidence. Runtime
+source is unchanged from f4677012630a6036e804be803328a1e6df30cbb8; its build,
+types and 58-case CI evidence remain applicable. The exact new commit is still
+validated by the GitHub workflow and required Vercel promotion check. Earlier
+no-commit/push statements describe their dated verification stages. The source
+publication result is recorded separately in private planning. Real environment
+files stay ignored and the staged source is checked for configured secrets.

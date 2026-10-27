@@ -47,7 +47,67 @@ preserve its generated secret and user-entered values. Never read parent .env.
 The model provider defaults to OpenAI only for compatibility when the provider
 variable is absent; this local environment explicitly selects Groq. Unknown
 providers, missing selected keys, mismatched models and stale rates disable
-execution. No application deployment is configured.
+execution. A protected build is now hosted; the current private-release status follows.
+
+Private release, 27 October: read docs/deployment.md before hosting changes.
+Workbench is deployed at **https://bld8-workbench.vercel.app** on the personal
+jaskevs-4920s-projects Hobby team, project prj_bnDEPbHmbHGURn6g6L7XRB82CbHQ.
+The first verified live-configured release was dpl_9xTa8AEv5FahYaTaQcDH8oJ1NfLd, built from
+f4677012630a6036e804be803328a1e6df30cbb8. Next.js compilation and TypeScript passed.
+Its required **Workbench checks** GitHub check completed with **succeeded** before
+production aliases were assigned. Git is connected to jaskevs/bld8-workbench/main;
+future main pushes are configured to build and pass that gate before promotion.
+That functional release used an already-pushed Git revision. Later documentation-only
+source releases preserve the runtime; their CI/deployment outcome is recorded in
+the private planning handoff.
+
+All Deployments protection remains enabled. Anonymous Conversations, conversation
+API and health requests on the stable and generated URLs redirect to Vercel
+sign-in. Application access is separately restricted to jaskevs, ID 26425317.
+Production-only variables enable Groq / openai/gpt-oss-120b, the US$1/user and
+US$5/app UTC-day list-rate guards, and live requests. Server secrets use Vercel's
+sensitive type; Preview/Development have no live credentials, and no OpenAI key
+is configured there. There is no automatic provider fallback.
+
+The user explicitly chose the existing personal OAuth app and confirmed both
+local and production callbacks saved on 27 October. This supersedes the separate
+Production-app plan. Keep http://127.0.0.1:3135/api/auth/callback/github and
+https://bld8-workbench.vercel.app/api/auth/callback/github registered. Each origin
+has its own AUTH_SECRET. The local environment and company/global settings remain
+unchanged. Use the stable HTTPS origin for production sign-in; alternate generated
+URLs are build references and may not share OAuth state cookies.
+
+Credential/model/schema/source preflight and the final Vercel settings audit pass.
+The user completed real production sign-in, sent a question, reopened its saved
+conversation and reloaded it on 27 October. This is the user's browser report;
+the personal Brave session was not controlled or independently observed here.
+A separate read-only Neon check finds one new completed Groq run created after
+this live deployment, with a saved answer/provider ID and matching ownership.
+Requested/reported model both match openai/gpt-oss-120b. Usage is 133 input and
+1,024 output tokens, duration 2,826 ms, list-rate estimate US$0.000635 with matching
+accounting. Both daily guards remain within their approved limits.
+
+The provider finish reason is length: this bounded test reached the 1,024-token
+ceiling. The response may be incomplete; the application has a corresponding
+length warning. Keep that observation in the next response-quality review rather
+than silently increasing the cap or generating another test answer. This new
+record is distinct from the earlier local response. No private question, answer,
+conversation ID, provider ID or credentials were copied into these notes.
+
+The initial private release stays jaskevs only. Real second-account isolation,
+manual assistive-technology review and the shell review/checkpoint remain open;
+Stage A is not marked complete. The fixed dates and 135-hour baseline are unchanged.
+
+The ignored .local/production.env is loaded explicitly by release tooling; never
+rename it to a Next.js auto-loaded environment filename. Local and production
+share only Workbench's existing Neon records/spending ledger and the user-approved
+personal OAuth app/Groq key; keep their session secrets different. Do not reset
+cloud data, force-bypass the release gate or create public bypass links. The
+real production sign-in/question/reopen/reload is now reported successful and
+the fresh saved run is independently verified through safe database metadata.
+Keep the token-ceiling observation for response-quality review and the explicitly
+deferred two-account check open. The verification above preceded the
+documentation-only source publication recorded in private planning.
 
 Server tests use a disposable loopback PostgreSQL database ending in _test.
 Authenticated browser tests use genuine encrypted test sessions and an isolated
